@@ -10,31 +10,29 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 })
 export class RegisterComponent implements OnInit {
 
-  credentials!: FormGroup;
+  registerForm = this.fb.group({
+    name : ['',Validators.required],
+    email : ['',Validators.required],
+    password : ['',Validators.required],
+  })
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     private userService: UserServiceService ) {}
 
     register(){
-     console.log("hello");
-    this.userService.register(this.credentials.value).subscribe(res => {
+    this.userService.register(this.registerForm.value).subscribe(res => {
     console.log(res);
-    
-    console.log(this.credentials.value + 1);
-    });
+        });
   }
 
   ngOnInit(): void {
 
-    this.credentials = this.fb.group({
-      name: ["",[Validators.required]],
-      email: ["",[Validators.required]],
-      password: ["",[Validators.required]],
-     
-    })
-    console.log(this.credentials);
+    // this.credentials = this.fb.group({
+    //   name: ['',Validators.required],
+    //   email: ['',Validators.required],
+    //   password: ['',Validators.required],
+    // })
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
@@ -10,29 +10,39 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  credentials: FormGroup;
+
+  loginForm = this.fb.group({
+  email : ['',Validators.required],
+  password : ['',Validators.required],
+})
+
+//public error = null;
 
   constructor(
-private router: Router,
 private fb: FormBuilder,
 private userService: UserServiceService){}
 
 login(){
-  this.userService.login(this.credentials.value).subscribe(res =>{
+  this.userService.login(this.loginForm.value).subscribe(res =>{
     localStorage.setItem('token',res);
     // if(res){
     //   this.router.navigate(['dashboard'])
     // }
+    //error => this.handleError(error);
+
   });
+
+//  console.warn(this.credentials.value);
 }
 
-  ngOnInit(): void {
+// handleError()
+// {
+//   this.error = error.error;
 
-    this.credentials = this.fb.group({
-      email: ["",[Validators.required]],
-      password: ["",[Validators.required]],
-    })
-    
-  }
+// }
+
+   ngOnInit(): void {
+
+   }
 
 }
