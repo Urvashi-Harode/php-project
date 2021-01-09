@@ -1,0 +1,58 @@
+<p>friend works!</p>
+<button (click)="showPeopleYouMayKnow()">People You May Know</button>
+<button (click)="showPendingFriends()">Pending Requests</button>
+
+<br />
+<div [ngClass]="{ 'hide-class': isClicked || isPendingClicked}">
+  <h2>Friends</h2>
+  <table border="1">
+    <tr>
+      <td>Id</td>
+      <td>name</td>
+    </tr>
+
+    <tr *ngFor="let f of friends | async">
+      <td>
+        <a (click)="showPost(f)">{{ f.firstname }} {{ f.lastname }}</a>
+      </td>
+      <td><button (click)="removeFriend(f.id)">Remove</button></td>
+      <!-- <td><button (click)="isFriend(f.id)">Remove</button></td> -->
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="isPendingClicked" [ngClass]="{ 'hide-class': isClicked }">
+  <h2>pending Requests</h2>
+  <table border="1">
+    <tr>
+      <td>Id</td>
+      <td>name</td>
+    </tr>
+
+    <tr *ngFor="let f of pending | async">
+      <td>
+        <a (click)="showPost(f)">{{ f.firstname }} {{ f.lastname }}</a>
+      </td>
+      <td><button (click)="acceptRequest(f.id)">Accept</button></td>
+      <td><button (click)="removeFriend(f.id)">Remove</button></td>
+    </tr>
+  </table>
+</div>
+<hr />
+<div *ngIf="isClicked">
+  <h2>All users</h2>
+  <table border="1">
+    <tr>
+      <td>Id</td>
+      <td>name</td>
+    </tr>
+
+    <tr *ngFor="let u of users | async">
+      <td>{{ u.firstname }}</td>
+      <td>{{ u.lastname }}</td>
+      <td><button (click)="addfriend(u.id)">Add Friend</button></td>
+    </tr>
+  </table>
+</div>
+
+<!-- <button (click)="friendsposts()">show posts</button> -->

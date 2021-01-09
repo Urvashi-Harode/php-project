@@ -1,0 +1,18 @@
+<nav class="navbar navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">Navbar</a>
+    <div>
+      <a class="navbar-brand" routerLink="login">Login</a>
+      <a class="navbar-brand" routerLink="register">Register</a>
+      <a class="navbar-brand" (click)="logout()">Logout</a>
+      <a class="navbar-brand" routerLink="">HOme</a>
+      <a class="navbar-brand" routerLink="friends">Friends</a>
+      <a class="navbar-brand" routerLink="post">Post</a>
+      <!-- <a class="navbar-brand" routerLink="profile/{{ user_id }}"
+          >Your Profile</a
+        > -->
+      <a class="navbar-brand" (click)="yourProfile()">Your Profile</a>
+    </div>
+    <!-- {{ user_id }} -->
+  </div>
+</nav>
