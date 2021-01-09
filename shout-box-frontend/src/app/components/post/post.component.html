@@ -1,0 +1,141 @@
+<div class="container main-container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="myCard standard-padding">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <textarea
+            class="textarea"
+            name="text"
+            [(ngModel)]="text"
+            rows="2"
+            placeholder="Whats on Your mind..."
+          ></textarea>
+          <hr class="hor-line" />
+          <div class="row">
+            <div class="col-md-4">
+              <input
+                type="file"
+                id="uploadImage"
+                name="multimedia"
+                (change)="fileEvent($event)"
+                accept="image/*"
+                hidden
+              />
+              <label id="lblimage" for="uploadImage">
+                <i class="fas fa-image"></i>
+                Image</label
+              >
+            </div>
+            <div class="col-md-4">
+              <input
+                type="file"
+                id="uploadAudio"
+                name="multimedia"
+                (change)="fileEvent($event)"
+                accept="audio/*"
+                hidden
+              />
+              <label id="lblAudio" for="uploadAudio">
+                <i class="fas fa-file-audio"></i> Audio</label
+              >
+            </div>
+            <div class="col-md-4">
+              <input
+                type="file"
+                id="uploadVideo"
+                name="multimedia"
+                (change)="fileEvent($event)"
+                accept="video/*"
+                hidden
+              />
+              <label id="lblVideo" for="uploadVideo">
+                <i class="fas fa-file-video"></i>
+                Video</label
+              >
+            </div>
+          </div>
+          <button
+            class="btn btn-primary btn-lg float-right"
+            style="width: 100px"
+          >
+            Post <span class="fa fa-arrow-right"></span>
+          </button>
+        </form>
+        <br />
+        <br />
+      </div>
+      <br />
+      <div class="myCard"></div>
+    </div>
+    <div class="col-md-4">
+      <div class="myCard" style="height: 400px"></div>
+    </div>
+  </div>
+</div>
+<div *ngFor="let a of friendsPosts">
+  <div *ngIf="a.text == 'undefined'; else block"></div>
+  <ng-template #block>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+        <p class="card-text">{{ a.text }}</p>
+        <br />
+        <button class="btn btn-success pull-right" (click)="btnclick(a.id)">
+          <a>Report</a>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <div *ngIf="a.type === 'mp3'">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+        <audio controls>
+          <source
+            src="{{ Path }}{{ a.multimedia }}"
+            height="auto"
+            width="100%"
+          />
+        </audio>
+        <br />
+        <button class="btn btn-success pull-right" (click)="btnclick(a.id)">
+          <a>Report</a>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="a.type === 'jpeg' || a.type === 'jpg' || a.type === 'png'">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+        <img
+          src="{{ Path }}{{ a.multimedia }}"
+          accept="image/*"
+          height="auto"
+          width="100%"
+        />
+        <br />
+        <button class="btn btn-success pull-right" (click)="btnclick(a.id)">
+          <a>Report</a>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="a.type === 'mp4' || a.type === '3gp'">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+        <video width="100%" height="auto" controls>
+          <source src="{{ Path }}{{ a.multimedia }}" type="video/mp4" />
+        </video>
+        <br />
+        <button class="btn btn-success pull-right" (click)="btnclick(a.id)">
+          <a>Report</a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

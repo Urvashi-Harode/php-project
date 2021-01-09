@@ -1,0 +1,123 @@
+<div *ngFor="let b of bio">
+  <p>{{ b.college }}</p>
+  <p>{{ b.school }}</p>
+  <!-- <button *ngIf="!Data(b.user_id)" (click)="editBio()">
+    Edit
+  </button> -->
+</div>
+<h1>hiii</h1>
+<!-- [ngClass]="{ 'hide-class': !loggedInUser }" -->
+<button [ngClass]="{ 'hide-class': !loggedInUser }" (click)="editBio()">
+  Edit
+</button>
+<!-- form to edit and add bio -->
+<div class="container" *ngIf="isEditClicked">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    Work:<input type="text" name="work" [(ngModel)]="work" />College:<input
+      type="text"
+      name="college"
+      [(ngModel)]="college"
+    />
+    <!-- value="{{bio[0].school}}" -->
+    School:<input type="text" name="school" [(ngModel)]="school" />
+    Location:<input type="text" name="location" [(ngModel)]="location" /> Nation
+    Place:<input type="text" name="native_place" [(ngModel)]="native_place" />
+    <br />
+    <button>post</button>
+  </form>
+</div>
+
+<div (notify)="friendComponent($event)">
+  <div *ngFor="let a of posts | async">
+    <div *ngIf="a.text == 'undefined'; else block"></div>
+    <ng-template #block>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+          <p class="card-text">{{ a.text }}</p>
+          <button class="btn btn-primary btn-lg" (click)="deletePost(a.id)">
+            Delete
+          </button>
+          <button
+          class="btn btn-success pull-right"
+          (click)="btnclick(a.id)"
+          *ngIf="Data(a.user_id)"
+        >
+          <a>Report</a>
+        </button>
+        </div>
+      </div>
+    </ng-template>
+  
+    <div *ngIf="a.type === 'mp3'">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+          <audio controls>
+            <source
+              src="{{ Path }}{{ a.multimedia }}"
+              height="auto"
+              width="100%"
+            />
+          </audio>
+          <br />
+          <button class="btn btn-primary btn-lg mt-5" (click)="deletePost(a.id)">
+            Delete
+          </button>
+          <button
+          class="btn btn-success pull-right"
+          (click)="btnclick(a.id)"
+          *ngIf="Data(a.user_id)"
+        >
+          <a>Report</a>
+        </button>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="a.type === 'jpeg' || a.type === 'jpg' || a.type === 'png'">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+          <img
+            src="{{ Path }}{{ a.multimedia }}"
+            accept="image/*"
+            height="auto"
+            width="100%"
+          />
+          <button class="btn btn-primary btn-lg" (click)="deletePost(a.id)">
+            Delete
+          </button>
+          <button
+          class="btn btn-success pull-right"
+          (click)="btnclick(a.id)"
+          *ngIf="Data(a.user_id)"
+        >
+          <a>Report</a>
+        </button>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="a.type === 'mp4' || a.type === '3gp'">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+          <video width="100%" height="auto" controls>
+            <source src="{{ Path }}{{ a.multimedia }}" type="video/mp4" />
+          </video>
+          <button class="btn btn-primary btn-lg" (click)="deletePost(a.id)">
+            Delete
+          </button>
+          <button
+          class="btn btn-success pull-right"
+          (click)="btnclick(a.id)"
+          *ngIf="Data(a.user_id)"
+        >
+          <a>Report</a>
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,67 @@
+<p>friends post works!</p>
+<div>
+  <table border="1">
+    <tr>
+      <td>Id</td>
+      <td>name</td>
+    </tr>
+
+    <tr *ngFor="let b of bio | async">
+
+        <td>{{ b.work }}</td>
+        <td>{{ b.college }}</td>
+        <td>{{ b.school }}</td>
+      
+    </tr>
+  </table>
+
+</div>
+
+<table border="1">
+  <tr>
+    <td>text</td>
+    <td>multimedia</td>
+  </tr>
+  <tr *ngFor="let a of post | async">
+    <td>
+      {{ a.text == "undefined" ? " " : a.text }}
+    </td>
+
+    <td>
+      <div *ngIf="a.type === 'mp3'">
+        <audio controls>
+          <source
+            src="{{ Path }}{{ a.multimedia }}"
+            height="100px"
+            width="100px"
+          />
+        </audio>
+      </div>
+
+      <div *ngIf="a.type === 'jpeg' || a.type === 'jpg' || a.type === 'png'">
+        <img
+          src="{{ Path }}{{ a.multimedia }}"
+          height="100px"
+          width="100px"
+          accept="image/*"
+        />
+      </div>
+
+      <div *ngIf="a.type === 'mp4' || a.type === '3gp'">
+        <video width="320" height="240" controls>
+          <source src="{{ Path }}{{ a.multimedia }}" type="video/mp4" />
+        </video>
+      </div>
+    </td>
+
+    <td>
+      <button
+        class="btn btn-success pull-right"
+        (click)="btnclick(a.id)"
+        *ngIf="Data(a.user_id)"
+      >
+        <a>{{ a.id }}Report</a>
+      </button>
+    </td> 
+   </tr>
+</table> 

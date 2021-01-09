@@ -1,0 +1,22 @@
+<nav class="navbar navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">Shout Box</a>
+      <div>
+        <!-- <a  *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="login">Login</a>
+        <a  *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="register">Register</a> -->
+        <a  *ngIf="isLoggedIn()" class="navbar-brand" (click)="logout()">Logout</a>
+        <a  *ngIf="isLoggedIn()" class="navbar-brand" routerLink="home">HOme</a>
+        <a  *ngIf="isLoggedIn()" class="navbar-brand" routerLink="friends">Friends</a>
+        <a  *ngIf="isLoggedIn()" class="navbar-brand" routerLink="post">Post</a>
+        <!-- <a class="navbar-brand" routerLink="profile/{{ user_id }}"
+          >Your Profile</a
+        > -->
+        <a  *ngIf="isLoggedIn()" class="navbar-brand" (click)="yourProfile()">Your Profile</a>
+      </div>
+      <!-- {{ user_id }} -->
+    </div>
+  </nav>
+  
+  <router-outlet></router-outlet>
+
+<!-- <app-welcomepage></app-welcomepage> -->
