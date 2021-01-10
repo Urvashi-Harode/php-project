@@ -9,14 +9,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  session_id: any;
+  user_id: any;
   constructor(
     private friend: FriendService,
     private ar: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.session_id = sessionStorage.getItem('id');
+  }
   users: Observable<any>;
   friendsPosts: Observable<any>;
-  user_id: number;
+
   data: any;
   // addfriend(friend_id: number) {
   //   this.data = {
@@ -33,6 +37,8 @@ export class HomeComponent implements OnInit {
   //   );
   // }
   ngOnInit(): void {
+    this.user_id = this.session_id;
+    // this.users = this.friend.getAllUsers(this.user_id);
     // this.user_id = 1;
     // this.users = this.friend.getAllUsers(this.user_id);
   }

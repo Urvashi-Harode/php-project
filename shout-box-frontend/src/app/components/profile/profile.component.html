@@ -33,26 +33,30 @@
     <ng-template #block>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+          <h5 class="card-title">
+            <i class="fas fa-user-circle"></i> {{ this.profile_name }}
+          </h5>
           <p class="card-text">{{ a.text }}</p>
           <button class="btn btn-primary btn-lg" (click)="deletePost(a.id)">
             Delete
           </button>
           <button
-          class="btn btn-success pull-right"
-          (click)="btnclick(a.id)"
-          *ngIf="Data(a.user_id)"
-        >
-          <a>Report</a>
-        </button>
+            class="btn btn-success pull-right"
+            (click)="btnclick(a.id)"
+            *ngIf="Data(a.user_id)"
+          >
+            <a>Report</a>
+          </button>
         </div>
       </div>
     </ng-template>
-  
+
     <div *ngIf="a.type === 'mp3'">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+          <h5 class="card-title">
+            <i class="fas fa-user-circle"></i> {{ this.profile_name }}
+          </h5>
           <audio controls>
             <source
               src="{{ Path }}{{ a.multimedia }}"
@@ -61,24 +65,29 @@
             />
           </audio>
           <br />
-          <button class="btn btn-primary btn-lg mt-5" (click)="deletePost(a.id)">
+          <button
+            class="btn btn-primary btn-lg mt-5"
+            (click)="deletePost(a.id)"
+          >
             Delete
           </button>
           <button
-          class="btn btn-success pull-right"
-          (click)="btnclick(a.id)"
-          *ngIf="Data(a.user_id)"
-        >
-          <a>Report</a>
-        </button>
+            class="btn btn-success pull-right"
+            (click)="btnclick(a.id)"
+            *ngIf="Data(a.user_id)"
+          >
+            <a>Report</a>
+          </button>
         </div>
       </div>
     </div>
-  
+
     <div *ngIf="a.type === 'jpeg' || a.type === 'jpg' || a.type === 'png'">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+          <h5 class="card-title">
+            <i class="fas fa-user-circle"></i> {{ this.profile_name }}
+          </h5>
           <img
             src="{{ Path }}{{ a.multimedia }}"
             accept="image/*"
@@ -89,20 +98,22 @@
             Delete
           </button>
           <button
-          class="btn btn-success pull-right"
-          (click)="btnclick(a.id)"
-          *ngIf="Data(a.user_id)"
-        >
-          <a>Report</a>
-        </button>
+            class="btn btn-success pull-right"
+            (click)="btnclick(a.id)"
+            *ngIf="Data(a.user_id)"
+          >
+            <a>Report</a>
+          </button>
         </div>
       </div>
     </div>
-  
+
     <div *ngIf="a.type === 'mp4' || a.type === '3gp'">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-user-circle"></i> username</h5>
+          <h5 class="card-title">
+            <i class="fas fa-user-circle"></i> {{ this.profile_name }}
+          </h5>
           <video width="100%" height="auto" controls>
             <source src="{{ Path }}{{ a.multimedia }}" type="video/mp4" />
           </video>
@@ -110,14 +121,14 @@
             Delete
           </button>
           <button
-          class="btn btn-success pull-right"
-          (click)="btnclick(a.id)"
-          *ngIf="Data(a.user_id)"
-        >
-          <a>Report</a>
-        </button>
+            class="btn btn-success pull-right"
+            (click)="btnclick(a.id)"
+            *ngIf="Data(a.user_id)"
+          >
+            <a>Report</a>
+          </button>
         </div>
       </div>
     </div>
   </div>
-  </div>
+</div>

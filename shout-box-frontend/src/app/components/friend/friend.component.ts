@@ -23,6 +23,8 @@ export class FriendComponent implements OnInit {
   length: number;
   sendFriend: any;
 
+  isAddClicked: boolean = true;
+
   isClicked: boolean = false;
   isPendingClicked: boolean = false;
   constructor(
@@ -36,21 +38,24 @@ export class FriendComponent implements OnInit {
 
   // sessionStorage.setItem('user_id', 1);
   // this.user_id = sessionStorage.getItem('id');
-  addfriend(friend_id: number) {
-    // this.user_id = sessionStorage.getItem('id');
-    this.data = {
-      user_id: this.session_id,
-      friend_id: friend_id,
-    };
-    this.friend.addFriend(this.data).subscribe(
-      () => {
-        console.log('addeds');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+  // addfriend(friend_id: number) {
+  //   // this.user_id = sessionStorage.getItem('id');
+  //   this.data = {
+  //     user_id: this.session_id,
+  //     friend_id: friend_id,
+  //   };
+  //   this.friend.addFriend(this.data).subscribe(
+  //     () => {
+  //       console.log('addeds');
+  //       this.isAddClicked = false;
+
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  //   this.ngOnInit();
+  // }
 
   acceptRequest(friend_id: number) {
     this.data = {
@@ -65,25 +70,28 @@ export class FriendComponent implements OnInit {
         console.log(error);
       }
     );
+    this.ngOnInit();
   }
 
   removeFriend(friend_id: number) {
     // this.user_id = this.ar.snapshot.queryParamMap.get('user_id');
     // this.friend_id = this.ar.snapshot.queryParamMap.get('friend_id');
-    
+
     this.user_id = this.session_id;
-    
+
     this.f_id = friend_id;
     console.log(this.f_id);
 
     this.friend.removeFriend(this.user_id, this.f_id).subscribe(
       () => {
         console.log('addeds');
+        this.ngOnInit();
       },
       (error) => {
         console.log(error);
       }
     );
+
   }
 
   showPost(f: any) {
@@ -102,7 +110,7 @@ export class FriendComponent implements OnInit {
       this.notify.emit(this.attemptClick);
       if (this.length > 0) {
         //this.flag=true;
-        this.router.navigate(['/profile/' + f.id], {
+        this.router.navigate(['/profile/' + f.id + '/' + f.firstname], {
           state: {
             sendFriend: f,
           },
@@ -131,13 +139,14 @@ export class FriendComponent implements OnInit {
   //   });
   // }
 
-  showPeopleYouMayKnow() {
-    this.isPendingClicked = false;
-    this.isClicked = true;
-  }
+  // showPeopleYouMayKnow() {
+  //   this.isPendingClicked = false;
+  //   this.isClicked = true;
+  // }
   showPendingFriends() {
     this.isClicked = false;
     this.isPendingClicked = true;
+
   }
   ngOnInit(): void {
     // this.user_id = this.ar.snapshot.paramMap.get('user_id');
@@ -145,8 +154,17 @@ export class FriendComponent implements OnInit {
 
     this.friends = this.friend.getAcceptedFriends(this.user_id);
 
-    this.users = this.friend.getAllUsers(this.user_id);
+    // this.users = this.friend.getAllUsers(this.user_id);
 
-    this.pending = this.friend.getAllPendingRequest(this.user_id);
+    // this.pending = this.friend.getAllPendingRequest(this.user_id);
+    // console.log();
+
+    this.friend.getAllPendingRequest(this.user_id).subscribe((result) => {
+      // this.ngOnInit();
+      this.pending = result;
+      console.log(this.pending);
+    });
+
+
   }
 }

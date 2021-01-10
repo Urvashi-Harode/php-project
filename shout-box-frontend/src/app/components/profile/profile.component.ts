@@ -43,7 +43,10 @@ export class ProfileComponent implements OnInit {
   loggedInUser: boolean = false;
   session_id: any;
   biodata: any;
-  // post_id: any;
+  username: any;
+  session_user_name: any;
+  friend_name: any;
+  profile_name: any;
 
   constructor(
     private post: PostService,
@@ -54,9 +57,13 @@ export class ProfileComponent implements OnInit {
   ) {
     if (this.click === true) {
       this.friend = this.router.getCurrentNavigation().extras.state.sendFriend;
-      console.log(this.friend);
+      console.log("clicked friend------" + this.friend);
+
     }
     this.session_id = sessionStorage.getItem('id');
+    this.session_user_name = sessionStorage.getItem('firstname');
+    console.log("logged in user" + this.session_user_name);
+
     // sessionStorage.setItem('userId', '2');
 
     // this.post.getData().subscribe((val) => {
@@ -143,16 +150,16 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
- 
 
   ngOnInit(): void {
     this.user_id = this.ar.snapshot.paramMap.get('user_id');
-    // alert(this.user_id);
+    this.friend_name = this.ar.snapshot.paramMap.get('firstname');
 
     if (this.user_id == this.session_id) {
       this.loggedInUser = true;
-
-      // this.LoggedInUser(this.user_id);
+      this.profile_name = this.session_user_name;
+    } else {
+      this.profile_name = this.friend_name;
     }
     //getting post of user or frirnd by id
     this.posts = this.post.getDataById(this.user_id);

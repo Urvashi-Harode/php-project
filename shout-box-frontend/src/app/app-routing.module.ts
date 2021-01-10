@@ -37,6 +37,10 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
+    path: 'profile/:user_id/:firstname',
+    component: ProfileComponent,
+  },
+  {
     path: 'profile/:user_id',
     component: ProfileComponent,
   },
@@ -62,4 +66,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

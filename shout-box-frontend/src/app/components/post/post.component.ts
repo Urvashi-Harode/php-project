@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FriendService } from 'src/app/services/friend.service';
 // import { MatCardModule } from '@angular/material/card';
 
 @Component({
@@ -22,6 +23,8 @@ export class PostComponent implements OnInit {
   filedata: any;
   user_id: any;
   x: any;
+  users: any;
+  data: any;
 
   public selectedFile: any;
 
@@ -32,26 +35,53 @@ export class PostComponent implements OnInit {
     private post: PostService,
     private http: HttpClient,
     private ar: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private friend: FriendService
   ) {
     console.log('ctor of post');
     this.session_id = sessionStorage.getItem('id');
   }
   friendsPosts: Observable<any>;
+  //function to add a friend
+  addfriend(friend_id: number) {
+    // this.user_id = sessionStorage.getItem('id');
+    this.data = {
+      user_id: this.session_id,
+      friend_id: friend_id,
+    };
+    this.friend.addFriend(this.data).subscribe(
+      () => {
+        console.log('addeds');
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.ngOnInit();
+  }
   ngOnInit(): void {
     console.log('inside ngoninit post');
 
     this.user_id = this.session_id;
     //this.friendsPosts = this.post.getPostForTimeline(this.user_id);
 
+    // this.users = this.friend.getAllUsers(this.user_id);
+
+    //getting users for people you may know
+    this.friend.getAllUsers(this.user_id).subscribe((result) => {
+      // this.ngOnInit();
+      this.users = result;
+      console.log(this.users);
+    });
+
+    //get posts for timeline
     this.post.getPostForTimeline(this.user_id).subscribe((result) => {
       // this.ngOnInit();
       this.friendsPosts = result;
 
       console.log(this.friendsPosts);
     });
-
-    console.log(this.friendsPosts);
   }
   btnclick(id: any) {
     sessionStorage.setItem('postid', id);

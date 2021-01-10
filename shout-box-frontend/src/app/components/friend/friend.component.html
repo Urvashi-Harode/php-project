@@ -1,9 +1,9 @@
 <p>friend works!</p>
-<button (click)="showPeopleYouMayKnow()">People You May Know</button>
+
 <button (click)="showPendingFriends()">Pending Requests</button>
 
 <br />
-<div [ngClass]="{ 'hide-class': isClicked || isPendingClicked}">
+<div [ngClass]="{ 'hide-class': isClicked || isPendingClicked }">
   <h2>Friends</h2>
   <table border="1">
     <tr>
@@ -29,7 +29,7 @@
       <td>name</td>
     </tr>
 
-    <tr *ngFor="let f of pending | async">
+    <tr *ngFor="let f of pending">
       <td>
         <a (click)="showPost(f)">{{ f.firstname }} {{ f.lastname }}</a>
       </td>
@@ -39,20 +39,3 @@
   </table>
 </div>
 <hr />
-<div *ngIf="isClicked">
-  <h2>All users</h2>
-  <table border="1">
-    <tr>
-      <td>Id</td>
-      <td>name</td>
-    </tr>
-
-    <tr *ngFor="let u of users | async">
-      <td>{{ u.firstname }}</td>
-      <td>{{ u.lastname }}</td>
-      <td><button (click)="addfriend(u.id)">Add Friend</button></td>
-    </tr>
-  </table>
-</div>
-
-<!-- <button (click)="friendsposts()">show posts</button> -->

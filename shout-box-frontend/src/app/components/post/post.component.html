@@ -68,7 +68,12 @@
       <div class="myCard"></div>
     </div>
     <div class="col-md-4">
-      <div class="myCard" style="height: 400px"></div>
+      <!-- people you may know -->
+      <div class="myCard" style="height: 400px" *ngFor="let u of users">
+        {{ u.firstname }} {{ u.lastname }}
+        <br />
+        <button (click)="addfriend(u.id)">Add Friend</button>
+      </div>
     </div>
   </div>
 </div>
