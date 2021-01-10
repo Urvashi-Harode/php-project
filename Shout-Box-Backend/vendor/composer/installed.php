@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'v8.5.6',
-    'version' => '8.5.6.0',
+    'pretty_version' => 'dev-MAJOR-BACK',
+    'version' => 'dev-MAJOR-BACK',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '3b674f0b8020b1bd27b5fef313d410c93e943bed',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -440,12 +440,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'v8.5.6',
-      'version' => '8.5.6.0',
+      'pretty_version' => 'dev-MAJOR-BACK',
+      'version' => 'dev-MAJOR-BACK',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '3b674f0b8020b1bd27b5fef313d410c93e943bed',
     ),
     'laravel/sail' => 
     array (
@@ -464,6 +464,15 @@
       array (
       ),
       'reference' => '45884b526e10a88a1b179fa1a1a24d5468c668c2',
+    ),
+    'laravel/ui' => 
+    array (
+      'pretty_version' => 'v3.2.0',
+      'version' => '3.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a1f82c6283c8373ea1958b8a27c3d5c98cade351',
     ),
     'league/commonmark' => 
     array (
@@ -760,8 +769,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 
