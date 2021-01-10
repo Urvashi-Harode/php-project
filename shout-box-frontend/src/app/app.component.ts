@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   logout() {
     sessionStorage.removeItem('id');
     sessionStorage.removeItem('firstname');
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
     // window.location.reload();
   }
 

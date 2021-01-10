@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     this.userService.register(this.registerForm.value).subscribe((res) => {
       console.log(res);
       if (res) {
-        this.router.navigate(['login']);
+        this.router.navigate(['']);
       }
     });
     this.alert = true;

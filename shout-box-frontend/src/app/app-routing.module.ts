@@ -44,10 +44,10 @@ const routes: Routes = [
     path: 'report',
     component: ReportComponent,
   },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent,
+  // },
   {
     path: 'register',
     component: RegisterComponent,
