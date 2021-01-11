@@ -1,19 +1,28 @@
 <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand">Navbar</a>
-      <div>
-        <a  *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="login">Login</a>
-        <a  *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="register">Register</a>
-        <a  *ngIf="isLoggedIn()" class="navbar-brand" (click)="logout()">Logout</a>
-        <a  *ngIf="isLoggedIn()" class="navbar-brand" routerLink="home">HOme</a>
-        <a  *ngIf="isLoggedIn()" class="navbar-brand" routerLink="friends">Friends</a>
-        <a  *ngIf="isLoggedIn()" class="navbar-brand" routerLink="post">Post</a>
-        <!-- <a class="navbar-brand" routerLink="profile/{{ user_id }}"
+  <div class="container-fluid">
+    <a class="navbar-brand">Navbar</a>
+    <div>
+      <a *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="login">Login</a>
+      <a *ngIf="!isLoggedIn()" class="navbar-brand" routerLink="register"
+        >Register</a
+      >
+      <a *ngIf="isLoggedIn()" class="navbar-brand" (click)="logout()">Logout</a>
+      <a *ngIf="isLoggedIn()" class="navbar-brand" routerLink="home"
+        ><span class="fa fa-home"></span
+      ></a>
+      <a *ngIf="isLoggedIn()" class="navbar-brand" routerLink="friends"
+        >Friends</a
+      >
+      <a *ngIf="isLoggedIn()" class="navbar-brand" routerLink="post"
+        ><span class="fa fa-rsm"></span> Post</a
+      >
+      <!-- <a class="navbar-brand" routerLink="profile/{{ user_id }}"
           >Your Profile</a
         > -->
-        <a  *ngIf="isLoggedIn()" class="navbar-brand" (click)="yourProfile()">Your Profile</a>
-      </div>
-      <!-- {{ user_id }} -->
+      <a *ngIf="isLoggedIn()" class="navbar-brand" (click)="yourProfile()"
+        >Your Profile</a
+      >
     </div>
-  </nav>
-  
+    <!-- {{ user_id }} -->
+  </div>
+</nav>

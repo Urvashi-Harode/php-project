@@ -44,9 +44,16 @@ export class ProfileComponent implements OnInit {
   session_id: any;
   biodata: any;
   username: any;
+  
   session_user_name: any;
   friend_name: any;
   profile_name: any;
+  text: any;
+  filedata:any;
+
+  fileEvent(e: any) {
+    this.filedata = e.target.files[0];
+  }
 
   constructor(
     private post: PostService,
@@ -125,6 +132,26 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+  
+
+  onSubmitpost(f: NgForm) {
+    // alert('in submit');
+    // this.x = sessionStorage.getItem('userId');
+    // this.x=4;
+    this.user_id = this.session_id;
+    let myformData = new FormData();
+    const headers = new HttpHeaders();
+    headers.append('Content-type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    myformData.append('multimedia', this.filedata);
+    myformData.append('text', this.text);
+    myformData.append('user_id', this.user_id);
+    this.post.insertMultimedia(myformData).subscribe(() => {
+      window.location.reload();
+      // this.ngOnInit();
+    });
+  }
+
 
   // LoggedInUser(user_id:number)
   // {

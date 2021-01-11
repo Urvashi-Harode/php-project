@@ -89,7 +89,7 @@ export class PostComponent implements OnInit {
     //this.router.navigate['report'];
     this.router.navigate(['report']);
   }
-  onSubmit(f: NgForm) {
+  onSubmitpost(f: NgForm) {
     // alert('in submit');
     // this.x = sessionStorage.getItem('userId');
     // this.x=4;
